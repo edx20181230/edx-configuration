@@ -103,7 +103,7 @@ parse_args()
             --config)
                 playbook_configs="${arg_value}"
                 ;;
-            --vault-name)
+            --vault)
                 vault_name="${arg_value}"
                 ;;
             --crt-secret-name)
