@@ -111,13 +111,11 @@ else
      playbook_configs=$OXA_PLAYBOOK_CONFIGS
 fi
 
-if [[ ! $OXA_VAULT_NAME ]] || [[ ! $OXA_CRT_SECRET_NAME ]] || [[ ! $OXA_KEY_SECRET_NAME ]]; then
+if [[ ! $OXA_VAULT_NAME ]]; then
     echo "You must specify the vault and certificate secret name & key"
     exit 2
 else
     vault_name=$OXA_VAULT_NAME
-    crt_secret_name=$OXA_CRT_SECRET_NAME
-    key_secret_name=$OXA_KEY_SECRET_NAME
 fi
 
 ##
