@@ -141,28 +141,28 @@ parse_args $@ # pass existing command line arguments
 
 if [[ ! $OPENEDX_RELEASE ]]; then
     echo "You must define OPENEDX_RELEASE"
-    exit
+    exit 2
 fi
 
 if [[ `lsb_release -rs` != "16.04" ]]; then
     echo "This script is only known to work on Ubuntu 16.04, exiting..."
-    exit
+    exit 2
 fi
 
 if [[ ! $target_playbook ]]; 
 then
     echo "You must specify the target playbook to execute: --playbook x.yml"
-    exit
+    exit 2
 fi
 
 if [[ ! $playbook_configs ]] || [[ ! -f $playbook_configs ]]; then
     echo "You must specify the path to the config file to use: --config /a.yml"
-    exit
+    exit 2
 fi
 
 if [[ ! $vault_name ]] || [[ ! $crt_secret_name ]] || [[ ! $key_secret_name ]]; then
     echo "You must specify the path to the config file to use: --config /a.yml"
-    exit
+    exit 2
 fi
 
 ##
