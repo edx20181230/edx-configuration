@@ -98,25 +98,25 @@ parse_args()
 
         case "$1" in
             --playbook)
-                REPO_ROOT="${arg_value}"
+                target_playbook="${arg_value}"
                 ;;
             --config)
-                CONFIG_PATH="${arg_value}"
+                playbook_configs="${arg_value}"
                 ;;
             --vault-name)
-                VAULT_NAME="${arg_value}"
+                vault_name="${arg_value}"
                 ;;
             --crt-secret-name)
-                CRT_SECRET_NAME="${arg_value}"
+                crt_secret_name="${arg_value}"
                 ;;
             --key-secret-name)
-                KEY_SECRET_NAME="${arg_value}"
+                key_secret_name="${arg_value}"
                 ;;
             --crt-filename)
-                CRT_FILE="${arg_value}"
+                crt_file="${arg_value}"
                 ;;
             --key-filename)
-                KEY_FILE="${arg_value}"
+                key_file="${arg_value}"
                 ;;
         esac
 
