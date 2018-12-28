@@ -61,7 +61,7 @@ NGINX_CMS_PROXY_SEND_TIMEOUT: !!null
 NGINX_CMS_PROXY_READ_TIMEOUT: !!null
 
 NGINX_SERVER_ERROR_IMG: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Pendleton_Sinking_Ship.jpg/640px-Pendleton_Sinking_Ship.jpg'
-NGINX_SERVER_MAINTENANCE_IMG: 'https://upload.wikimedia.org/wikipedia/commons/a/af/Under_construction_icon-yellow.svg'
+NGINX_SERVER_MAINTENANCE_IMG: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Under_construction_icon-yellow.svg/288px-Under_construction_icon-yellow.svg.png'
 NGINX_SERVER_ERROR_IMG_ALT: ''
 NGINX_SERVER_ERROR_LANG: 'en'
 NGINX_SERVER_ERROR_STYLE_H1: 'font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif; margin-bottom: .3em; font-size: 2.0em; line-height: 1.25em; text-rendering: optimizeLegibility; font-weight: bold; color: #000000;'
