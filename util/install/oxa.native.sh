@@ -76,59 +76,6 @@ source_utilities()
     source $utilities_path
 }
 
-##
-## Parse script parameters
-##
-parse_args()
-{
-    while [[ "$#" -gt 0 ]]
-    do
-
-        arg_value="${2}"
-        shift_once=0
-
-        if [[ "${arg_value}" =~ "--" ]]; 
-        then
-            arg_value=""
-            shift_once=1
-        fi
-
-        # Log input parameters to facilitate troubleshooting
-        echo "Option '${1}' set with value '"${arg_value}"'"
-
-        case "$1" in
-            --playbook)
-                target_playbook="${arg_value}"
-                ;;
-            --config)
-                playbook_configs="${arg_value}"
-                ;;
-            --vault)
-                vault_name="${arg_value}"
-                ;;
-            --crt-secret-name)
-                crt_secret_name="${arg_value}"
-                ;;
-            --key-secret-name)
-                key_secret_name="${arg_value}"
-                ;;
-            --crt-filename)
-                crt_file="${arg_value}"
-                ;;
-            --key-filename)
-                key_file="${arg_value}"
-                ;;
-        esac
-
-        shift # past argument or value
-
-        if [ $shift_once -eq 0 ]; 
-        then
-            shift # past argument or value
-        fi
-    done
-}
-
 function finish {
     echo "Installation finished at $(date '+%Y-%m-%d %H:%M:%S')"
 }
@@ -149,20 +96,28 @@ if [[ `lsb_release -rs` != "16.04" ]]; then
     exit 2
 fi
 
-if [[ ! $target_playbook ]]; 
+if [[ ! $OXA_TARGET_PLAYBOOK ]]; 
 then
     echo "You must specify the target playbook to execute: --playbook x.yml"
     exit 2
+else
+    target_playbook=$OXA_TARGET_PLAYBOOK
 fi
 
-if [[ ! $playbook_configs ]] || [[ ! -f $playbook_configs ]]; then
+if [[ ! $OXA_PLAYBOOK_CONFIGS ]] || [[ ! -f $OXA_PLAYBOOK_CONFIGS ]]; then
     echo "You must specify the path to the config file to use: --config /a.yml"
     exit 2
+else
+     playbook_configs=$OXA_PLAYBOOK_CONFIGS
 fi
 
-if [[ ! $vault_name ]] || [[ ! $crt_secret_name ]] || [[ ! $key_secret_name ]]; then
+if [[ ! $OXA_VAULT_NAME ]] || [[ ! $OXA_CRT_SECRET_NAME ]] || [[ ! $OXA_KEY_SECRET_NAME ]]; then
     echo "You must specify the vault and certificate secret name & key"
     exit 2
+else
+    vault_name=$OXA_VAULT_NAME
+    crt_secret_name=$OXA_CRT_SECRET_NAME
+    key_secret_name=$OXA_KEY_SECRET_NAME
 fi
 
 ##
@@ -266,7 +221,7 @@ sudo -H pip install -r requirements.txt
 ##
 ## Run the specified playbook in the configuration/playbooks directory
 ##
-cd /var/tmp/configuration/playbooks && sudo -E ansible-playbook -c local ./$target_playbook -i "localhost," $EXTRA_VARS "$@"
+cd /var/tmp/configuration/playbooks && sudo -E ansible-playbook -c local ./"${target_playbook}" -i "localhost," $EXTRA_VARS "$@"
 ansible_status=$?
 
 if [[ $ansible_status -ne 0 ]]; then
