@@ -32,7 +32,7 @@ fetch_ssl_certificate()
 
     if [[ $? -eq 0 ]]; then
         # Fetch cert from KeyVault
-        az keyvault secret download --vault-name $vault_name --name $crt_secret_name --file /etc/ssl/certs/$CRT_FILE --encoding base64
+        az keyvault secret download --vault-name $vault_name --name $crt_secret_name --file /etc/ssl/certs/$crt_file --encoding base64
 
         result=$?
         if [[ $result -ne 0 ]]; then
@@ -42,7 +42,7 @@ fetch_ssl_certificate()
 
 
         # Fetch key from KeyVault
-        az keyvault secret download --vault-name $VAULT_NAME --name $key_secret_name --file /etc/ssl/private/$KEY_FILE --encoding base64
+        az keyvault secret download --vault-name $vault_name --name $key_secret_name --file /etc/ssl/private/$key_file --encoding base64
         
         result=$?
         if [[ $result -ne 0 ]]; then
@@ -161,7 +161,7 @@ if [[ ! $playbook_configs ]] || [[ ! -f $playbook_configs ]]; then
 fi
 
 if [[ ! $vault_name ]] || [[ ! $crt_secret_name ]] || [[ ! $key_secret_name ]]; then
-    echo "You must specify the path to the config file to use: --config /a.yml"
+    echo "You must specify the vault and certificate secret name & key"
     exit 2
 fi
 
