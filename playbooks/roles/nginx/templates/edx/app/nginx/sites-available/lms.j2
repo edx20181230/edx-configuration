@@ -163,7 +163,7 @@ error_page {{ k }} {{ v }};
 
   {% if NGINX_EDXAPP_ENABLE_MAINTENANCE %}
   location @maintenance {
-      add_header Cache-Control no-cache
+      add_header 'Cache-Control' 'no-cache';
       rewrite ^(.*)$ /server/maintenance.html break;
   }
   {% endif %}
