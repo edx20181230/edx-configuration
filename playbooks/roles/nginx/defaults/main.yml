@@ -91,7 +91,7 @@ NGINX_SERVER_HTML_FILES:
     style_p_h2: "{{ NGINX_SERVER_ERROR_STYLE_P_H2 }}"
     style_p: "{{ NGINX_SERVER_ERROR_STYLE_P }}"
     style_div: "{{ NGINX_SERVER_ERROR_STYLE_DIV }}"
-- file: maintenance.html
+  - file: maintenance.html
     lang: "{{ NGINX_SERVER_ERROR_LANG }}"
     title: ''
     msg: 'Sorry for the inconvenience but we&rsquo;re currently performing site maintenance. We&rsquo;ll be back online shortly.'
